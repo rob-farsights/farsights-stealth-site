@@ -8,10 +8,10 @@
 
   <style>
     :root {
-      --text-primary: rgba(245, 247, 250, 0.92);
-      --text-secondary: rgba(180, 199, 225, 0.82);
-      --text-muted: rgba(180, 199, 225, 0.58);
-      --shadow: 0 2px 18px rgba(0, 0, 0, 0.46);
+      --text-primary: rgba(245, 247, 250, 0.94);
+      --text-secondary: rgba(184, 204, 232, 0.84);
+      --text-muted: rgba(184, 204, 232, 0.64);
+      --shadow: 0 2px 22px rgba(0, 0, 0, 0.52);
     }
 
     * {
@@ -22,7 +22,7 @@
     body {
       margin: 0;
       min-height: 100%;
-      background: #151718;
+      background: #111416;
     }
 
     body {
@@ -30,13 +30,12 @@
       overflow: hidden;
       font-family: Inter, "Helvetica Neue", Arial, sans-serif;
       color: var(--text-primary);
-
       background-image:
         linear-gradient(
-          180deg,
-          rgba(0, 0, 0, 0.14),
-          rgba(0, 0, 0, 0.04) 42%,
-          rgba(0, 0, 0, 0.24)
+          90deg,
+          rgba(0, 0, 0, 0.22),
+          rgba(0, 0, 0, 0.04) 48%,
+          rgba(0, 0, 0, 0.10)
         ),
         url("./farsights-landing-bg-mirrored-1920x1080.webp");
       background-size: cover;
@@ -44,18 +43,24 @@
       background-repeat: no-repeat;
     }
 
+    .mobile-bg {
+      display: none;
+    }
+
     .page {
+      position: relative;
+      z-index: 2;
       min-height: 100vh;
-      padding: 48px 56px;
+      padding: 56px 64px;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
+      justify-content: center;
       align-items: flex-start;
     }
 
     .stealth-card {
-      max-width: 460px;
-      padding: 0;
+      max-width: 560px;
+      margin-top: 18vh;
       text-shadow: var(--shadow);
     }
 
@@ -67,68 +72,78 @@
     .line,
     .date {
       text-transform: uppercase;
-      letter-spacing: 0.28em;
       font-weight: 300;
     }
 
     .eyebrow {
-      margin-bottom: 18px;
-      font-size: 12px;
+      margin-bottom: 22px;
+      font-size: clamp(14px, 1.1vw, 18px);
+      letter-spacing: 0.34em;
       color: var(--text-secondary);
     }
 
     .line {
-      margin-bottom: 14px;
-      font-size: 15px;
+      margin-bottom: 18px;
+      font-size: clamp(19px, 1.7vw, 28px);
+      letter-spacing: 0.24em;
       color: var(--text-primary);
     }
 
     .date {
-      font-size: 11px;
+      font-size: clamp(12px, 0.95vw, 16px);
+      letter-spacing: 0.32em;
       color: var(--text-muted);
     }
 
     @media (max-width: 720px) {
       body {
         min-height: 100svh;
-        background-image:
-          linear-gradient(
-            180deg,
-            rgba(0, 0, 0, 0.08),
-            rgba(0, 0, 0, 0.02) 42%,
-            rgba(0, 0, 0, 0.18)
-          ),
-          url("./farsights-landing-bg-mobile-1080x1920.png");
-        background-size: cover;
-        background-position: center center;
-        background-repeat: no-repeat;
+        background: #111416;
+      }
+
+      .mobile-bg {
+        display: block;
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        width: 100vw;
+        height: 100svh;
+        object-fit: cover;
+        object-position: center center;
       }
 
       .page {
         min-height: 100svh;
-        padding: 28px 28px 76px;
-        justify-content: flex-end;
+        padding: 28px 30px;
+        justify-content: center;
         align-items: flex-start;
       }
 
-      .brand-mobile {
-        display: block;
+      .page::before {
+        content: "";
         position: fixed;
-        top: 54px;
-        left: 28px;
-        right: 28px;
-        z-index: 2;
-        text-align: right;
+        inset: 0;
+        z-index: -1;
         pointer-events: none;
-        text-shadow: var(--shadow);
+        background:
+          linear-gradient(
+            180deg,
+            rgba(0, 0, 0, 0.02),
+            rgba(0, 0, 0, 0.00) 44%,
+            rgba(0, 0, 0, 0.26)
+          );
+      }
+
+      .brand-mobile {
+        display: none;
       }
 
       .brand-name {
         margin: 0 0 8px;
-        font-size: clamp(30px, 9vw, 44px);
+        font-size: clamp(28px, 8vw, 42px);
         line-height: 1;
         font-weight: 300;
-        letter-spacing: 0.16em;
+        letter-spacing: 0.14em;
         color: rgba(245, 247, 250, 0.9);
       }
 
@@ -138,67 +153,68 @@
 
       .brand-tagline {
         margin: 0;
-        font-size: clamp(9px, 2.4vw, 12px);
-        line-height: 1.4;
+        font-size: clamp(8px, 2.2vw, 11px);
+        line-height: 1.45;
         font-weight: 300;
-        letter-spacing: 0.32em;
+        letter-spacing: 0.28em;
         text-transform: uppercase;
-        color: rgba(180, 199, 225, 0.78);
+        color: rgba(184, 204, 232, 0.78);
       }
 
       .stealth-card {
-        max-width: 320px;
-        z-index: 3;
+        max-width: 360px;
+        margin-top: 18vh;
+        z-index: 4;
       }
 
       .eyebrow {
-        margin-bottom: 14px;
-        font-size: 11px;
-        color: rgba(180, 199, 225, 0.86);
+        margin-bottom: 18px;
+        font-size: 12px;
+        letter-spacing: 0.34em;
+        color: rgba(184, 204, 232, 0.88);
       }
 
       .line {
-        margin-bottom: 12px;
-        font-size: 13px;
-        color: rgba(245, 247, 250, 0.9);
+        margin-bottom: 16px;
+        font-size: 16px;
+        letter-spacing: 0.28em;
+        color: rgba(245, 247, 250, 0.92);
       }
 
       .date {
-        font-size: 10px;
-        color: rgba(180, 199, 225, 0.7);
-      }
-    }
-
-    @media (min-width: 721px) {
-      .brand-mobile {
-        display: none;
+        font-size: 11px;
+        letter-spacing: 0.34em;
+        color: rgba(184, 204, 232, 0.74);
       }
     }
 
     @media (max-height: 680px) and (max-width: 720px) {
       .brand-mobile {
-        top: 34px;
+        top: 30px;
       }
 
       .page {
-        padding-bottom: 42px;
+        padding: 24px 28px;
       }
 
       .stealth-card {
+        margin-top: 14vh;
         transform: scale(0.92);
-        transform-origin: left bottom;
+        transform-origin: left center;
       }
     }
   </style>
 </head>
 
 <body>
-  <main class="page" aria-label="Farsights stealth landing page">
-    <div class="brand-mobile" aria-hidden="true">
-      <p class="brand-name">farsights<span class="ai">.ai</span></p>
-      <p class="brand-tagline">Clarity&nbsp;&nbsp;Advantage&nbsp;&nbsp;Insight</p>
-    </div>
+  <img
+    class="mobile-bg"
+    src="./farsights-landing-bg-mirrored-1080x1920.png"
+    alt=""
+    aria-hidden="true"
+  />
 
+  <main class="page" aria-label="Farsights stealth landing page">
     <section class="stealth-card">
       <div class="eyebrow">Stealth mode</div>
       <div class="line">Building quietly</div>
